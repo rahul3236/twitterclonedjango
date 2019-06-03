@@ -12,5 +12,9 @@ class User(models.Model):
 class Tweet(models.Model):
     tweettext=models.CharField( max_length=160)
     tweetfile=models.CharField(max_length=50)
-    models.DateTimeField( auto_now=True)
+    tweettime = models.DateTimeField( auto_now_add=True)
     userId = models.ForeignKey(User, on_delete=models.CASCADE)
+
+class Followers(models.Model):
+    userId=models.OneToOneField(User, on_delete=models.CASCADE, related_name="users")
+    followerId=models.ManyToManyField(User, related_name="followers")

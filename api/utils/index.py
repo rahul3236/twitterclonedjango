@@ -27,10 +27,12 @@ def getBody(request):
 def verifyToken(token):
     try:
         data = jwt.decode(token, 'Rahul@1289', algorithms=['HS256'])
-        print(data)
+        return data
     except:
         print("Invalid token")
+        return False
 
-def createToken():
-    encoded_token = jwt.encode({'user_id': 'abc'}, 'Rahul@1289', algorithm='HS256')
-    return encoded_token
+def createToken(data):
+    encoded_token = jwt.encode(data, 'Rahul@1289', algorithm='HS256')
+    return HttpResponse(json.dumps({'token':encoded_token.decode('utf-8')}))
+    #return encoded_token
