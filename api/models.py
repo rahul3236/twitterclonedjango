@@ -18,3 +18,10 @@ class Tweet(models.Model):
 class Followers(models.Model):
     userId=models.OneToOneField(User, on_delete=models.CASCADE, related_name="users")
     followerId=models.ManyToManyField(User, related_name="followers")
+
+class Feeds(models.Model):
+    title = models.CharField(max_length=1000)
+    summary = models.CharField(max_length=2000, blank=True, null=True)
+    link = models.CharField(max_length=1000)
+    published = models.CharField(max_length=1000, blank=True, null=True)
+    media = models.CharField(max_length=1000, blank=True, null=True)

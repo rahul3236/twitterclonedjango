@@ -44,7 +44,7 @@ def getFollower(request):
         return HttpResponse(json.dumps(followers))
         
     except Followers.DoesNotExist:
-        return HttpResponse({"success":True,msg:"No Foolwers"})
+        return HttpResponse(json.dumps([]))
 
 
 
